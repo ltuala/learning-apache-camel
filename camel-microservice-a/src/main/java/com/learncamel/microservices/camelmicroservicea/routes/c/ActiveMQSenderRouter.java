@@ -10,11 +10,14 @@ public class ActiveMQSenderRouter extends RouteBuilder {
 	public void configure() throws Exception {
 		// TODO Auto-generated method stub
 		//timer
-		from("timer:active-mq-timer?period=10000")
-		.transform().constant("My message for Active MQ")
+//		from("timer:active-mq-timer?period=10000")
+//		.transform().constant("My message for Active MQ")
+//		.log("${body}")
+//		.to("activemq:my-activemq-queue");
+		//queue
+		from("file:files/json")
 		.log("${body}")
 		.to("activemq:my-activemq-queue");
-		//queue
 	}
 
 }

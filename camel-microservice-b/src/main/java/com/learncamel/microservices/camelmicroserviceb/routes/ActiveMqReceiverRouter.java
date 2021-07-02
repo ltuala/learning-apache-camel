@@ -25,11 +25,19 @@ public class ActiveMqReceiverRouter extends RouteBuilder{
 		// TODO Auto-generated method stub
 		//JSON
 		//CurrencyExchange
-		from("activemq:my-activemq-queue")
+//		from("activemq:my-activemq-queue")
+//		.unmarshal()
+//		.json(JsonLibrary.Jackson, CurrencyExchange.class)
+//		.bean(myCurrencyExchangeProcessor)
+//		.bean(myCurrencyExchangeTransformer)
+//		.to("log:received-message-from-active-mq");
+		
+		from("activemq:my-activemq-xml-queue")
 		.unmarshal()
-		.json(JsonLibrary.Jackson, CurrencyExchange.class)
-		.bean(myCurrencyExchangeProcessor)
-		.bean(myCurrencyExchangeTransformer)
+		.jacksonxml(CurrencyExchange.class)
+//		.json(JsonLibrary.Jackson, CurrencyExchange.class)
+//		.bean(myCurrencyExchangeProcessor)
+//		.bean(myCurrencyExchangeTransformer)
 		.to("log:received-message-from-active-mq");
 		
 	}
